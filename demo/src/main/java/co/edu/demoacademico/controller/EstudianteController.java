@@ -1,0 +1,29 @@
+package co.edu.demoacademico.controller;
+
+import co.edu.demoacademico.model.Estudiante;
+import co.edu.demoacademico.service.EstudianteService;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/estudiantes")
+public class EstudianteController {
+
+    private final EstudianteService service;
+
+    public EstudianteController(EstudianteService service) {
+        this.service = service;
+    }
+
+    @PostMapping
+    public Estudiante crear(@Valid @RequestBody Estudiante estudiante) {
+        return service.crear(estudiante);
+    }
+
+    @GetMapping
+    public List<Estudiante> listar() {
+        return service.listar();
+    }
+}
